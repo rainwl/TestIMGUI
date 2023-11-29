@@ -35,6 +35,16 @@ int main() {
   (void) io;
   io.Fonts->AddFontFromFileTTF("JetBrainsMono-Regular.ttf", 18, nullptr, io.Fonts->GetGlyphRangesChineseFull());
 
+  io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
+  io.ConfigFlags |= ImGuiViewportFlags_NoDecoration;
+  io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;
+  io.ConfigFlags |= ImGuiCol_DockingEmptyBg;
+  io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;
+
+
+
+
+
   ImGui::StyleColorsDark();
   ImGuiStyle &style = ImGui::GetStyle();
   style.WindowRounding = 12;
@@ -89,6 +99,15 @@ int main() {
 
     ImGui::Render();
     ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+
+    if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable) {
+      GLFWwindow *backup_current_context = glfwGetCurrentContext();
+      ImGui::UpdatePlatformWindows();
+      ImGui::RenderPlatformWindowsDefault();
+      glfwMakeContextCurrent(backup_current_context);
+    }
+
+
 
     glfwSwapBuffers(window);
     glfwPollEvents();
