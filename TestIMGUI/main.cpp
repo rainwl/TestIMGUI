@@ -39,7 +39,6 @@ int main() {
   io.ConfigFlags |= ImGuiViewportFlags_NoDecoration;
   io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;
   io.ConfigFlags |= ImGuiCol_DockingEmptyBg;
-  io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;
 
 
 
@@ -94,6 +93,7 @@ int main() {
     ImGui_ImplGlfw_NewFrame();
     ImGui::NewFrame();
 
+    ImGui::DockSpaceOverViewport();
     draw_gui();
     ImGui::ShowDemoWindow();
 
