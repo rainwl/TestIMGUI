@@ -55,8 +55,17 @@ int main() {
     ImGui::InputText("Test Text Box", text_box, IM_ARRAYSIZE(text_box));
 
     ImGui::BeginListBox("xixi");
-    for (size_t i = 0; i < 100; ++i) { if (ImGui::Selectable(std::to_string(i).c_str(),std::to_string(i) == text)) { text = std::to_string(i); } }
+    for (size_t i = 0; i < 100; ++i) { if (ImGui::Selectable(std::to_string(i).c_str(), std::to_string(i) == text)) { text = std::to_string(i); } }
     ImGui::EndListBox();
+
+    if (ImGui::BeginCombo("aa", text.c_str())) {
+      for (int i = 0; i < 100; ++i) {
+        if (ImGui::Selectable(std::to_string(i).c_str())) {
+          text = std::to_string(i);
+        }
+      }
+      ImGui::EndCombo();
+    }
 
     ImGui::End();
 
