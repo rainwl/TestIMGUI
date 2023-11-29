@@ -2,10 +2,13 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
-#pragma comment(lib,"../API/GLFW/glfw3.lib")
-#pragma comment(lib,"../API/GLEW/glew32s.lib")
-#pragma comment(lib,"Opengl32.lib")
+#pragma comment(lib, "../API/GLFW/glfw3.lib")
+#pragma comment(lib, "../API/GLEW/glew32s.lib")
+#pragma comment(lib, "Opengl32.lib")
 
+#include "imgui.h"
+#include "imgui_impl_glfw.h"
+#include "imgui_impl_opengl3.h"
 
 GLFWwindow *window;
 
@@ -19,11 +22,14 @@ int main() {
   glfwMakeContextCurrent(window);
   glfwSwapInterval(0);
 
+  IMGUI_CHECKVERSION();
+  ImGui::CreateContext(nullptr);
+  ImGuiIO &io = ImGui::GetIO();
+  (void)io;
+  ImGui::StyleColorsDark();
+  ImGui_ImplGlfw_InitForOpenGL(window,true);
 
-
-
-  while (!glfwWindowShouldClose(window))
-  {
+  while (!glfwWindowShouldClose(window)) {
     glfwSwapBuffers(window);
     glfwPollEvents();
   }
