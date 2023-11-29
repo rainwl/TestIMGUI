@@ -11,6 +11,7 @@
 #include "imgui_impl_opengl3.h"
 
 #include <iostream>
+#include <string>
 
 GLFWwindow *window;
 
@@ -33,6 +34,9 @@ int main() {
   ImGui_ImplGlfw_InitForOpenGL(window, true);
   ImGui_ImplOpenGL3_Init("#version 330");
 
+  std::string text = "hello world 123";
+  char text_box[50]{"Text box"};
+
   while (!glfwWindowShouldClose(window)) {
     glClear(GL_COLOR_BUFFER_BIT);
 
@@ -41,10 +45,18 @@ int main() {
     ImGui::NewFrame();
 
     ImGui::Begin("MyImguiWindow");
-    if (ImGui::Button("Mybutton")) {
-      std::cout<<"\n Button Down \n";
+
+    ImGui::Text(text.c_str());
+    if (ImGui::Button("MyButton")) {
+      std::cout << "\n Button Down \n";
+      text = "You click the button";
     }
 
+    ImGui::InputText("Test Text Box", text_box, IM_ARRAYSIZE(text_box));
+
+    ImGui::BeginListBox("xixi");
+    for (size_t i = 0; i < 100; ++i) { if (ImGui::Selectable(std::to_string(i).c_str(),std::to_string(i) == text)) { text = std::to_string(i); } }
+    ImGui::EndListBox();
 
     ImGui::End();
 
