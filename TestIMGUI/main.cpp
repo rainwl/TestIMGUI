@@ -37,6 +37,8 @@ int main() {
   std::string text = "hello world 123";
   char text_box[50]{"Text box"};
 
+  ImVec4 color;
+
   while (!glfwWindowShouldClose(window)) {
     glClear(GL_COLOR_BUFFER_BIT);
 
@@ -59,13 +61,11 @@ int main() {
     ImGui::EndListBox();
 
     if (ImGui::BeginCombo("aa", text.c_str())) {
-      for (int i = 0; i < 100; ++i) {
-        if (ImGui::Selectable(std::to_string(i).c_str())) {
-          text = std::to_string(i);
-        }
-      }
+      for (int i = 0; i < 100; ++i) { if (ImGui::Selectable(std::to_string(i).c_str())) { text = std::to_string(i); } }
       ImGui::EndCombo();
     }
+
+    ImGui::ColorEdit4("Text Color", (float *) &color);
 
     ImGui::End();
 
