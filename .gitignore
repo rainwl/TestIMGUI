@@ -5,3 +5,5 @@ TestIMGUI/x64/Debug/
 x64/Debug/
 
 *.user
+
+.idea/.idea.TestIMGUI/.idea/

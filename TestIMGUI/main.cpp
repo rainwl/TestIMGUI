@@ -25,11 +25,22 @@ int main() {
   IMGUI_CHECKVERSION();
   ImGui::CreateContext(nullptr);
   ImGuiIO &io = ImGui::GetIO();
-  (void)io;
+  (void) io;
+
   ImGui::StyleColorsDark();
-  ImGui_ImplGlfw_InitForOpenGL(window,true);
+  ImGui_ImplGlfw_InitForOpenGL(window, true);
+  ImGui_ImplOpenGL3_Init("#version 330");
 
   while (!glfwWindowShouldClose(window)) {
+    ImGui_ImplOpenGL3_NewFrame();
+    ImGui_ImplGlfw_NewFrame();
+    ImGui::NewFrame();
+
+
+    ImGui::Render();
+    ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+    
+    
     glfwSwapBuffers(window);
     glfwPollEvents();
   }
