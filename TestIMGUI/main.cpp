@@ -65,7 +65,7 @@ int main() {
       ImGui::EndCombo();
     }
 
-    ImGui::ColorEdit4("Text Color", (float *) &color);
+    ImGui::ColorEdit4("Text Color", (float *) &color,ImGuiColorEditFlags_::ImGuiColorEditFlags_AlphaBar);
 
     ImGui::End();
 
